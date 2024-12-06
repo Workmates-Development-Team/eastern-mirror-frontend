@@ -87,7 +87,7 @@ export default function CategoryTable() {
         params?.search
       }&sort=${sort}&order=${order}&category=${category}&startDate=${
         startDate || ""
-      }&endDate=${endDate || ""}`
+      }&endDate=${endDate || ""}&admin=true`
     );
     setTotalPages(data?.totalPages);
     return data;

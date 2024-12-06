@@ -3,29 +3,15 @@
 import Loader from "@/components/Loader";
 import BreadcrumbComponent from "@/components/main/BreadcrumbConponent";
 import Section4 from "@/components/main/sections/section4";
-import { url_maker } from "@/lib/utils";
-import { TOP_NEWS } from "@/static/data";
 import axiosServer from "@/utils/axiosServer";
 import { formatDate } from "@/utils/date";
 import { getImageUrl } from "@/utils/getImageUrl";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import { IoShareSocial } from "react-icons/io5";
 
-type dataInstance = {
-  title: string;
-  content: string;
-  author: {
-    name: string;
-  };
-  publishedAt: string;
-  url: string;
-  thumbnail: string;
-  slug: string;
-};
 
 const Details = () => {
   const { slug } = useParams();
@@ -74,6 +60,85 @@ const Details = () => {
     retry: 1,
   });
 
+  const handleShare = async () => {
+    const shareUrl = `${window.location.origin}/details/${data?.slug}`;
+    const shareData = {
+      title: data.title,
+      text: data.title,
+      url: shareUrl,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (error) {
+        console.error("Error sharing content:", error);
+      }
+    } else {
+      console.warn("Web Share API not supported. Copy link fallback");
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        alert("Link copied to clipboard!");
+      });
+    }
+  };
+
+  const handletelegramShare = () => {
+    const shareUrl = `${window.location.origin}/details/${data?.slug}`;
+    const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(data.title)}`;
+  
+    // Open the Telegram share URL in a new tab
+    window.open(telegramUrl, "_blank");
+  };
+  
+
+  const handleWhatappShare = () => {
+    const shareUrl = `${window.location.origin}/details/${data?.slug}`;
+    const whatsappShareUrl = `https://wa.me/?text=${encodeURIComponent(
+      `${data.title}\n${shareUrl}`
+    )}`;
+  
+    // Open WhatsApp share link
+    window.open(whatsappShareUrl, "_blank");
+  };
+
+  const handleSMSShare = async () => {
+    const shareUrl = `${window.location.origin}/details/${data?.slug}`;
+    const messageText = `${data.title}: ${shareUrl}`;
+    
+    if (navigator.share) {
+      try {
+        // Try using the Web Share API
+        await navigator.share({
+          title: data.title,
+          text: messageText,
+          url: shareUrl, // This is ignored in SMS, but required for some platforms
+        });
+      } catch (error) {
+        console.error("Error sharing content:", error);
+      }
+    } else {
+      // Fallback to SMS or clipboard copy
+      const smsUrl = `sms:?body=${encodeURIComponent(messageText)}`;
+      if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+        // Open SMS client for mobile devices
+        window.location.href = smsUrl;
+      } else {
+        // Copy the link to clipboard for desktop or unsupported devices
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          alert("Link copied to clipboard!");
+        });
+      }
+    }
+  };
+
+  const handleFacebookShare = async () => {
+    const shareUrl = `${window.location.origin}/details/${data?.slug}`;
+    const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+  
+    // Open Facebook share dialog
+    window.open(facebookShareUrl, '_blank');
+  };
+
   if (!isPending && !data) {
     return router.push("/");
   }
@@ -119,7 +184,7 @@ const Details = () => {
                 </p>
 
                 <div className="flex mt-2 items-center md:gap-10 gap-2">
-                  <div className="flex flex-col items-center">
+                  <div onClick={handleShare} className="flex cursor-pointer flex-col items-center">
                     <IoShareSocial className="md:w-[23.45px] w-5  md:h-[34.49px] h-5" />
 
                     <p className="md:text-xs text-[10px] text-[#3D5A80]">
@@ -127,7 +192,7 @@ const Details = () => {
                     </p>
                   </div>
 
-                  <div>
+                  <div className="cursor-pointer" onClick={handletelegramShare}>
                     <Image
                       width={30}
                       height={30}
@@ -136,7 +201,7 @@ const Details = () => {
                       className="md:w-[30px] md:h-[30px] w-6 h-6"
                     />
                   </div>
-                  <div>
+                  <div className="cursor-pointer" onClick={handleWhatappShare}>
                     <Image
                       width={34}
                       height={34}
@@ -145,7 +210,7 @@ const Details = () => {
                       className="md:w-[34px] md:h-[34px] w-7 h-7"
                     />
                   </div>
-                  <div>
+                  <div className="cursor-pointer" onClick={handleSMSShare}>
                     <Image
                       width={30}
                       height={30}
@@ -154,7 +219,7 @@ const Details = () => {
                       className="md:w-[30px] md:h-[30px] w-6 h-6"
                     />
                   </div>
-                  <div>
+                  <div className="cursor-pointer" onClick={handleFacebookShare}>
                     <Image
                       width={30}
                       height={30}

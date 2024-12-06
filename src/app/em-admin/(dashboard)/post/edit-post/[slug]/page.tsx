@@ -48,6 +48,7 @@ const EditPost = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedAuthor, setSelectedAuthor] = useState<string>("");
   const [thumbnail, setThumbnail] = useState("");
+  const [publishedAt, setpublishedAt] = useState<string>(new Date().toISOString());
   const [id, setId] = useState<string>("");
   const router = useRouter();
   const { slug } = useParams();
@@ -72,6 +73,7 @@ const EditPost = () => {
     setSelectedAuthor(data?.author?._id || "");
     setCategory(data?.category || []);
     setThumbnail(data?.thumbnail || "");
+    setpublishedAt(data?.publishedAt || "");
     setId(data?._id);
   }, [data]);
 
@@ -123,6 +125,7 @@ const EditPost = () => {
       formData.append("tags", JSON.stringify(selectedTags));
       formData.append("slug", slug);
       formData.append("thumbnail", thumbnail);
+      formData.append("publishedAt", publishedAt);
 
       const { data } = await axiosInstance.put(
         "/article/edit/" + id,
@@ -287,6 +290,18 @@ const EditPost = () => {
           )}
         />
       </div>
+
+      <div className="flex flex-col gap-2  col-span-2">
+          <Label htmlFor="name">Publish Date &  Time</Label>
+         
+          <input
+            type="datetime-local"
+            id="publishedAt"
+            value={publishedAt}
+            onChange={(e) => setpublishedAt(e.target.value)}
+            className="input"
+          />
+        </div>
 
       <div className="border border-gray-300 rounded-md p-4 mb-6">
         <TextEditor value={value} setValue={setValue} />

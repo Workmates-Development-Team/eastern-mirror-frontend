@@ -27,6 +27,7 @@ import "./style.css";
 import TextEditor from "@/components/admin/TextEditor";
 import Gallery from "@/components/admin/Gallery";
 import { getImageUrl } from "@/utils/getImageUrl";
+import DatePicker from "react-datepicker";
 
 // Dynamically import ReactQuill with no SSR
 // const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
@@ -58,6 +59,7 @@ const AddPost = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [thumbnail, setThumbnail] = useState("");
   const [selectedAuthor, setSelectedAuthor] = useState<string>("");
+  const [publishedAt, setpublishedAt] = useState<string>(new Date().toISOString());
   const router = useRouter();
 
   useEffect(() => {
@@ -122,6 +124,7 @@ const AddPost = () => {
       formData.append("slug", slug);
 
       formData.append("thumbnail", thumbnail);
+      formData.append("publishedAt", publishedAt);
 
       const { data } = await axiosInstance.post("/article/add", formData, {
         headers: {
@@ -168,6 +171,7 @@ const AddPost = () => {
     sessionStorage.removeItem("postMedia");
   };
 
+  console.log(publishedAt)
   return (
     <div className="p-[50px]">
       <input
@@ -276,6 +280,8 @@ const AddPost = () => {
             )}
           />
         </div>
+
+
         <div className="flex flex-col gap-2 col-span-2">
           <Label htmlFor="author">Author</Label>
           <Autocomplete
@@ -320,6 +326,18 @@ const AddPost = () => {
                 }}
               />
             )}
+          />
+        </div>
+
+        <div className="flex flex-col gap-2  col-span-2">
+          <Label htmlFor="name">Publish Date &  Time</Label>
+         
+          <input
+            type="datetime-local"
+            id="publishedAt"
+            value={publishedAt}
+            onChange={(e) => setpublishedAt(e.target.value)}
+            className="input"
           />
         </div>
       </div>

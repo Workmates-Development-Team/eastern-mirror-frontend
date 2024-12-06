@@ -225,7 +225,7 @@ const Card = ({ data }: { data: any }) => {
           <Image
             width={300}
             height={200}
-            className="w-full h-full object-cover max-h-[200px]"
+            className={`w-full h-full max-h-[200px] ${data.thumbnail ? 'object-cover': 'object-contain p-2'}`}
             src={getImageUrl(data?.thumbnail)}
             alt="blog-image"
           />
