@@ -61,7 +61,7 @@ const Event = ({
                 >
                   <div className="">
                     <div className="md:w-[120px] w-[110px]">
-                      <Image
+                      <img
                         className="w-full md:h-[117px] h-[100px] object-cover"
                         src={getImageUrl(item.thumbnail)}
                         width={120}
@@ -99,7 +99,7 @@ export const CardVertical = ({
 }) => (
   <Link href={`/details/${data?.slug}`}>
     <div>
-      <Image
+      <img
         src={getImageUrl(data.thumbnail)}
         alt={data.title}
         className="w-full md:h-[250px] h-[225px] object-cover"

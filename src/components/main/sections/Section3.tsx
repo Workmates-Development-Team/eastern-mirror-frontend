@@ -60,7 +60,7 @@ const Section3 = ({ data, heading, trending, watchNow, link }: PropsType) => {
         <div className="grid md:grid-cols-2 grid-cols-1 md:gap-7 gap-3 mt-2.5">
           <div className="relative">
             <Link href={"/details/" + data[0]?.slug}>
-              <Image
+              <img
                 className="w-full md:h-[375px] h-[200px] object-cover rounded-[7.07px]"
                 width={665}
                 height={375}
@@ -103,7 +103,7 @@ const Section3 = ({ data, heading, trending, watchNow, link }: PropsType) => {
           {data?.slice(1, 5)?.map((item: any, i: number) => (
             <Link href={"/details/" + item?.slug} key={i}>
               <div>
-                <Image
+                <img
                   src={getImageUrl(item.thumbnail)}
                   alt="image"
                   width={280}

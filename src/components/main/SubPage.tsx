@@ -170,7 +170,7 @@ const PopularCard = ({
     <div>
       <div className="w-[65px] h-[65px]">
         <Link href={"/details/" + data?.slug}>
-          <Image
+          <img
             width={65}
             height={65}
             className="w-full h-full object-cover"
@@ -222,7 +222,7 @@ const Card = ({ data }: { data: any }) => {
     <div className="bg-[#F5F6F9] grid grid-cols-6 md:gap-7 gap-3">
       <div className="md:col-span-2 col-span-3 relative">
         <Link href={"/details/" + data?.slug} className="w-full h-[200px] ">
-          <Image
+          <img
             width={300}
             height={200}
             className={`w-full h-full max-h-[200px] ${data.thumbnail ? 'object-cover': 'object-contain p-2'}`}

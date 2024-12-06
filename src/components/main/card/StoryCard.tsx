@@ -37,9 +37,9 @@ const StoryCard = ({ item }: { item: any }) => {
       </div>
       <Link href={"/details/" + item?.slug} className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-35"></Link>
       <div>
-        <Image
+        <img
           className={`w-full h-[354.99px] ${!item.thumbnail? 'object-contain' : 'object-cover'}`}
-          src={item.image || getImageUrl(item.thumbnail)}
+          src={getImageUrl(item.thumbnail)}
           width={330}
           height={354.99}
           alt="image"

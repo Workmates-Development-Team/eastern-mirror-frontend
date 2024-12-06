@@ -39,7 +39,7 @@ const BigCard = ({ data }: { data: PropsType }) => {
         </div>
 
         <Link href={"/details/" + data?.slug}>
-          <Image
+          <img
             className="w-full md:h-[440px] h-[220px]  object-cover"
             width={500}
             height={440}

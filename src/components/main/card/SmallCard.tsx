@@ -32,7 +32,7 @@ const SmallCard = ({ data, isBorder }: PropsType) => {
 
       <div className="col-span-2">
         <Link href={"/details/" + data?.slug}>
-          <Image
+          <img
             width={199}
             height={117}
             className="w-full h-[94%] max-h-[117px] rounded-xl object-cover"
