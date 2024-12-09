@@ -1,4 +1,15 @@
-import { BookImage, Contact, GalleryThumbnails, Home, Newspaper, Settings, SquarePen, User, Users, Video } from "lucide-react";
+import {
+  BookImage,
+  Contact,
+  GalleryThumbnails,
+  Home,
+  Newspaper,
+  Settings,
+  SquarePen,
+  User,
+  Users,
+  Video,
+} from "lucide-react";
 
 export const ADMIN_SIDEBAR_LINKS = [
   {
@@ -159,22 +170,35 @@ export const NAVBAR_LINKS = [
     href: "/india",
   },
   {
-    label: "Exclusives",
-    href: "/exclusive",
+    label: "World",
+    href: "/world",
   },
+
   {
     label: "opinion",
-    href: "/editorial",
-    // subLinks: [
-    //   {
-    //     label: "Editorial",
-    //     href: "/editorial",
-    //   },
-    //   {
-    //     label: "Letters to the Editor",
-    //     href: "/letters-to-the-editor",
-    //   },
-    // ],
+    href: "/opinion",
+    subLinks: [
+      {
+        label: "Editorial",
+        href: "/editorial",
+      },
+      {
+        label: "Views and Reviews",
+        href: "/views-and-reviews",
+      },
+      {
+        label: "Op-Ed",
+        href: "/op-ed",
+      },
+      {
+        label: "Letter to Editor",
+        href: "/letters-to-editor",
+      },
+      {
+        label: "Book Reviews",
+        href: "/book-reviews",
+      },
+    ],
   },
 
   {
@@ -185,31 +209,38 @@ export const NAVBAR_LINKS = [
   {
     label: "science and tech",
     href: "/science-and-tech",
-    // subLinks: [
-    //   {
-    //     label: "Tech News",
-    //     href: "/tech-news",
-    //   },
-    //   {
-    //     label: "Gaming",
-    //     href: "/gaming",
-    //   },
-    //   {
-    //     label: "Climate and Environment",
-    //     href: "/environment",
-    //   },
-    // ],
   },
 
   {
     label: "arts and entertainment",
     href: "/arts-and-entertainment",
-   
+  },
+
+  {
+    label: "More",
+    href: "/north-east",
+    subLinks: [
+      {
+        label: "North East",
+        href: "/north-east",
+      },
+      {
+        label: "Education",
+        href: "/education",
+      },
+      {
+        label: "Business",
+        href: "/business",
+      },
+      {
+        label: "Health",
+        href: "/health",
+      },
+    ],
   },
 ];
 
 export const FOOTER_LINKS = [
- 
   // {
   //   section: "Nagaland Districts",
   //   links: [

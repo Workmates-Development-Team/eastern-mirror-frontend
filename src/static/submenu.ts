@@ -4,24 +4,17 @@ export const opinion = [
     href: "/opinion/editorial",
   },
   {
-    name: "Letters to the Editor",
-    href: "/opinion/letters-to-the-editor",
+    name: "Letters to Editor",
+    href: "/opinion/letters-to-editor",
   },
   {
     name: "Op-Ed",
     href: "/opinion/op-ed",
   },
+
   {
-    name: "Our Columnists",
-    href: "/opinion/our-columnists",
-  },
-  {
-    name: "Spirituality",
-    href: "/opinion/spirituality",
-  },
-  {
-    name: "Views & Reviews",
-    href: "/opinion/views-reviews",
+    name: "Views and Reviews",
+    href: "/opinion/views-and-reviews",
   },
 ];
 

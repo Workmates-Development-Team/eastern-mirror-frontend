@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import axiosServer from "@/utils/axiosServer";
 import { formatDate } from "@/utils/date";
 import { Pagination } from "@mui/material";
@@ -18,6 +18,10 @@ const SearchPage = () => {
   const [page, setPage] = useState(Number(currentPage) || 1);
   const router = useRouter();
 
+  useEffect(() => {
+    setPage(Number(currentPage) || 1);
+  }, [currentPage]);
+
   const fetchData = async () => {
     const { data } = await axiosServer.get(
       `/article/all?search=${query}&limit=10&page=${page}`
@@ -26,7 +30,7 @@ const SearchPage = () => {
   };
 
   const { isPending, data } = useQuery({
-    queryKey: ["seacrh", query],
+    queryKey: ["seacrh", query, page],
     queryFn: () => fetchData(),
     staleTime: 60000,
     refetchOnWindowFocus: false,
@@ -70,10 +74,17 @@ const SearchPage = () => {
                     name: string;
                   };
                 }) => (
-                  <div key={article._id} className="pb-12 flex gap-5 items-center md:flex-row flex-col">
-
+                  <div
+                    key={article._id}
+                    className="pb-12 flex gap-5 items-center md:flex-row flex-col"
+                  >
                     <div>
-                      <Image src={getImageUrl(article.thumbnail)} width={300} height={250} alt={article.slug} />
+                      <Image
+                        src={getImageUrl(article.thumbnail)}
+                        width={300}
+                        height={250}
+                        alt={article.slug}
+                      />
                     </div>
                     <div className="">
                       <h3 className="text-xl font-bold mb-2">

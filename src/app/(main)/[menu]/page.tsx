@@ -57,14 +57,8 @@ const Menu = () => {
       categories={
         menu === "nagaland"
           ? nagaland
-          : menu === "arts-and-entertainment"
-          ? artsAndEntertainment
           : menu === "opinion"
           ? opinion
-          : menu === "science-and-tech"
-          ? scienceAndTech
-          : menu === "sports"
-          ? sports
           : undefined
       }
       links={[{ label: menu === "editorial"? 'Opinion': convertString(menu as string) }]}
