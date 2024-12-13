@@ -81,7 +81,11 @@ const Footer = () => {
             Nagaland Districts
           </h3>
 
-          <ul className={"flex md:flex-wrap flex-col md:flex-row text-center md:text-start  md:gap-3 gap-2"}>
+          <ul
+            className={
+              "flex md:flex-wrap flex-col md:flex-row text-center md:text-start  md:gap-3 gap-2"
+            }
+          >
             {nagaland.map((link, i) => (
               <li
                 key={i}
@@ -111,9 +115,18 @@ const Footer = () => {
               item.section === "Nagaland Districts" ? "col-span-2" : ""
             )}
           >
-            <h3 className="lora-medium text-[15px] md:text-base md:pb-[22px] pb-[10px] uppercase">
-              {item.section}
-            </h3>
+            {item?.path ? (
+              <Link href={item.path}>
+                {" "}
+                <h3 className="lora-medium text-[15px] md:text-base md:pb-[22px] pb-[10px] uppercase">
+                  {item.section}
+                </h3>
+              </Link>
+            ) : (
+              <h3 className="lora-medium text-[15px] md:text-base md:pb-[22px] pb-[10px] uppercase">
+                {item.section}
+              </h3>
+            )}
 
             <ul
               className={cn(

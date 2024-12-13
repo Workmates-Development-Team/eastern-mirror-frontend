@@ -241,75 +241,6 @@ export const NAVBAR_LINKS = [
 ];
 
 export const FOOTER_LINKS = [
-  // {
-  //   section: "Nagaland Districts",
-  //   links: [
-  //     {
-  //       label: "Chümoukedima",
-  //       href: "/chumoukedima",
-  //     },
-  //     {
-  //       label: "Dimapur",
-  //       href: "/dimapur",
-  //     },
-  //     {
-  //       label: "Kiphire",
-  //       href: "/kiphire",
-  //     },
-  //     {
-  //       label: "Kohima",
-  //       href: "/kohima",
-  //     },
-  //     {
-  //       label: "Longleng",
-  //       href: "/longleng",
-  //     },
-  //     {
-  //       label: "Mokokchung",
-  //       href: "/mokokchung",
-  //     },
-  //     {
-  //       label: "Mon",
-  //       href: "/mon",
-  //     },
-  //     {
-  //       label: "Niuland",
-  //       href: "/niuland",
-  //     },
-  //     {
-  //       label: "Noklak",
-  //       href: "/noklak",
-  //     },
-  //     {
-  //       label: "Peren",
-  //       href: "/peren",
-  //     },
-  //     {
-  //       label: "Phek",
-  //       href: "/phek",
-  //     },
-  //     {
-  //       label: "Shamator",
-  //       href: "/shamator",
-  //     },
-  //     {
-  //       label: "Tseminyü",
-  //       href: "/tseminyu",
-  //     },
-  //     {
-  //       label: "Tuensang",
-  //       href: "/tuensang",
-  //     },
-  //     {
-  //       label: "Wokha",
-  //       href: "/wokha",
-  //     },
-  //     {
-  //       label: "Zünheboto",
-  //       href: "/zunheboto",
-  //     },
-  //   ],
-  // },
   {
     section: "Popular Sections",
     links: [
@@ -333,6 +264,7 @@ export const FOOTER_LINKS = [
   },
   {
     section: "News",
+    path: "/news",
     links: [
       {
         label: "World",
