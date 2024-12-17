@@ -23,15 +23,15 @@ const SubMenu = () => {
   }, [currentPage]);
 
   const fetchCategoryArticles = async (category: string) => {
-    const { data } = await axiosServer.get(`/article/all?category=${category}`);
+    const { data } = await axiosServer.get(`/article/all?category=${category}&page=${page}`);
     return data;
   };
   const fetchTagArticles = async (tag: string) => {
-    const { data } = await axiosServer.get(`/article/all?tag=${tag}`);
+    const { data } = await axiosServer.get(`/article/all?tag=${tag}&page=${page}`);
     return data;
   };
   const fetchAuthorrticles = async (author: string) => {
-    const { data } = await axiosServer.get(`/article/all?author=${author}`);
+    const { data } = await axiosServer.get(`/article/all?author=${author}&page=${page}`);
     return data;
   };
 
