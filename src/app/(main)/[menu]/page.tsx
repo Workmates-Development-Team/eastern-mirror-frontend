@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/Loader";
 import SubPage from "@/components/main/SubPage";
 import { convertString } from "@/lib/utils";
 import {
@@ -43,9 +44,17 @@ const Menu = () => {
     retry: 1,
   });
 
-  // if (!isPending && (!data?.articles?.length || !data)) {
-  //   return router.push("/");
-  // }
+  if (!isPending && (!data?.articles?.length || !data)) {
+    return router.push("/details/"+menu);
+  }
+
+  if (isPending) {
+    return (
+      <div className="container flex justify-center min-h-[50vh] mt-10">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <SubPage
@@ -61,8 +70,13 @@ const Menu = () => {
           ? opinion
           : undefined
       }
-      links={[{ label: menu === "editorial"? 'Opinion': convertString(menu as string) }]}
-      title={ menu === "editorial"? 'Opinion': convertString(menu as string)}
+      links={[
+        {
+          label:
+            menu === "editorial" ? "Opinion" : convertString(menu as string),
+        },
+      ]}
+      title={menu === "editorial" ? "Opinion" : convertString(menu as string)}
     />
   );
 };
