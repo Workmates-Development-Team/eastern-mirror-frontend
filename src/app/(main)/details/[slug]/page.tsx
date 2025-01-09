@@ -37,13 +37,13 @@ const Details = () => {
     return data.articles;
   };
 
-  const { isPending: loading, data: populars } = useQuery({
-    queryKey: ["popular"],
-    queryFn: () => fetchPopular(),
-    staleTime: 60000,
-    refetchOnWindowFocus: false,
-    retry: 1,
-  });
+  // const { isPending: loading, data: populars } = useQuery({
+  //   queryKey: ["popular"],
+  //   queryFn: () => fetchPopular(),
+  //   staleTime: 60000,
+  //   refetchOnWindowFocus: false,
+  //   retry: 1,
+  // });
 
   const fetchHighlight = async () => {
     const { data } = await axiosServer.get(
@@ -52,13 +52,13 @@ const Details = () => {
     return data.articles;
   };
 
-  const { data: highlights } = useQuery({
-    queryKey: ["highlights"],
-    queryFn: () => fetchHighlight(),
-    staleTime: 60000,
-    refetchOnWindowFocus: false,
-    retry: 1,
-  });
+  // const { data: highlights } = useQuery({
+  //   queryKey: ["highlights"],
+  //   queryFn: () => fetchHighlight(),
+  //   staleTime: 60000,
+  //   refetchOnWindowFocus: false,
+  //   retry: 1,
+  // });
 
   const handleShare = async () => {
     const shareUrl = `${window.location.origin}/details/${data?.slug}`;
@@ -135,7 +135,6 @@ const Details = () => {
     const shareUrl = `${window.location.origin}/details/${data?.slug}`;
     const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
   
-    // Open Facebook share dialog
     window.open(facebookShareUrl, '_blank');
   };
 
@@ -161,7 +160,7 @@ const Details = () => {
           />
 
           <div className="grid grid-cols-3 gap-7  md:mt-20 mt-10">
-            <div className="md:col-span-2 col-span-3">
+            <div className="col-span-3 mx-auto">
               <div className="max-w-[842px]">
                 <h1 className="md:text-2xl text-[21px] leading-tight md:leading-normal lora-bold">
                   {data?.title}
@@ -254,7 +253,7 @@ const Details = () => {
               </div>
             </div>
 
-            {populars?.length ? (
+            {/* {populars?.length ? (
               <div className="md:col-span-1 col-span-3">
                 <div className="flex justify-center md:mt-28 mt-8">
                   <div className="bg-[#002366] py-2 px-4 text-white md:text-lg text-base roboto-regular">
@@ -301,11 +300,11 @@ const Details = () => {
                   ))}
                 </div>
               </div>
-            ) : null}
+            ) : null} */}
           </div>
-          {highlights?.length ? (
+          {/* {highlights?.length ? (
             <Section4 data={highlights} heading="HIGHLIGHTS" />
-          ) : null}
+          ) : null} */}
         </div>
       )}
     </div>
